@@ -1,0 +1,24 @@
+{
+  "name": "back-end",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.ts",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": " tsx watch ./index.ts"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/express": "^5.0.1",
+    "@types/node": "^22.14.0",
+    "axios": "^1.8.4",
+    "express": "^5.1.0",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.19.3"
+  },
+  "dependencies": {
+    "tsc": "^2.0.4"
+  }
+}
