@@ -5,4 +5,4 @@ router.post('/login',)
 // 登出接口
 router.post('/logout',)
 // 注册接口
-router.post('/register',)
+router.post('/register',)  
