@@ -2,7 +2,7 @@
 
 # dependencies
 /node_modules
-font-end/my-app/node_modules
+font-end/node_modules
 /.pnp
 .pnp.js
 
@@ -22,3 +22,5 @@ font-end/my-app/node_modules
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+font-end/.react-router/
+font-end/build/
