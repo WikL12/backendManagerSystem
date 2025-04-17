@@ -5,7 +5,7 @@ import systemRouter from './router/systemRoute'
 const app = express();
 app.use(cors())
 app.use(express.json());
-
+app.use('/assets', express.static('assets'));
 
 // app.post('/api1', (req:Request, res:Response) => {
 //     // 解决跨域

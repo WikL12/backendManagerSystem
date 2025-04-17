@@ -2,26 +2,17 @@ import '@ant-design/v5-patch-for-react-19';
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
-import Home from './pages/Home'
-import Login from './pages/Login'
-import ErrorPage from './error-page'
+
 import {
   createBrowserRouter,
+  redirect,
   RouterProvider,
 } from "react-router";
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Login></Login>,
-    errorElement: <ErrorPage></ErrorPage>,
-  },
-  {
-    path: "/login",
-    element: <Login></Login>,
-  }
-  
-]);
+import {router} from './router'
+
+
+
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

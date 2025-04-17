@@ -1,3 +1,15 @@
+ import {  notification } from 'antd';
+// 请求全局错误提示
+ type NotificationType = 'success' | 'info' | 'warning' | 'error';
+//  const [api, contextHolder] = notification.useNotification();
+//  const openNotificationWithIcon = (type: NotificationType,description:string) => {
+//     api[type]({
+//       message: 'Notification Title',
+//       description:
+//         description,
+//     });
+//   };
+
 export interface requestType {
     (url: string,
         method: string,
@@ -20,10 +32,12 @@ export const requestFun: requestType = (url, method, headers, params) => {
         if (res.ok) {
             return res.json()
         }
+        // handle error
+        // openNotificationWithIcon('error','服务端错误，请求解析失败')
     }
     ).catch(err => {
         // handle error
-        console.log(err)
+        // openNotificationWithIcon('error',err.message)
         return Promise.reject(err)
     })
 }
