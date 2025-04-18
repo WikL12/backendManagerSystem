@@ -7,7 +7,6 @@ export default function Register() {
     const [username, setUsername] = useState<string>('');
     const [password, setPassword] = useState<string|number>('');
     const handleRegister = async()=>{
-        console.log(username,password);
         if(!username || !password) {
             message.error('请输入用户名和密码');
             return;

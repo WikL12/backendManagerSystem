@@ -24,8 +24,8 @@ export const requestFun: requestType = (url, method, headers, params) => {
 
     return fetch(requestUrl, {
         method: method || 'POST',
-        headers: headers || {
-            'Content-Type': 'application/json'
+        headers: headers['Content-Type'] ? headers: {
+            'Content-Type': 'application/json; charset=UTF-8'
         },
         body: method === 'GET' ? null : JSON.stringify(params)
     }).then(res => {

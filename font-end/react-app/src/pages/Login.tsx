@@ -25,6 +25,9 @@ export default function Login() {
             setToken(res.data.token);
             message.success('登录成功')
             navigate('/userlist')
+       }else{
+           message.error(res.message)
+       
        }
    }
 
