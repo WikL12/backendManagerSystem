@@ -7,7 +7,7 @@ router.get('/', (req: Request, res: Response) => {
     res.send('Hello Woasdadrld1')
 })
 
-router.get('/userList', middlerware,getUserList)
+router.post('/userList', middlerware,getUserList)
 
 
 export default router

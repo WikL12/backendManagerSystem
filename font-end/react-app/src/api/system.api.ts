@@ -19,3 +19,7 @@ export const logout = ():Promise<ResultType> => {
 export const register = ({username, password}:loginType):Promise<ResultType> => {
     return requestFun('http://localhost:3000/system/register','POST',{}, {username, password})
 }
+
+export const getUserList = ():Promise<ResultType> => {
+    return requestFun('http://localhost:3000/user/userList','POST',{})
+}

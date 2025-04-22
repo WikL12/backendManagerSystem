@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import db from "../Database";
+import {generateToken} from "./generateToken";
 export const login = async(req:Request, res:Response) => {
     console.log(req.body)
     const { username, password } = req.body;
@@ -9,11 +10,13 @@ export const login = async(req:Request, res:Response) => {
        res.json({ message: '无此账号，请重试' ,code:300});
        return
     }
+    // 生成token
+    const token = generateToken(user[0].id,res);
     res.json({
         success: true,
         code:200,
         data: {
-            token:'asdadadadadasdasdasdasdasd',
+            token:token,
             username: user[0].userName,
             password: user[0].passWord,
         }   

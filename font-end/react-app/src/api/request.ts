@@ -27,7 +27,8 @@ export const requestFun: requestType = (url, method, headers, params) => {
         headers: headers['Content-Type'] ? headers: {
             'Content-Type': 'application/json; charset=UTF-8'
         },
-        body: method === 'GET' ? null : JSON.stringify(params)
+        body: method === 'GET' ? null : JSON.stringify(params),
+        credentials: 'include'
     }).then(res => {
         if (res.ok) {
             return res.json()
@@ -38,6 +39,7 @@ export const requestFun: requestType = (url, method, headers, params) => {
     ).catch(err => {
         // handle error
         // openNotificationWithIcon('error',err.message)
+        console.log(err)
         return Promise.reject(err)
     })
 }
