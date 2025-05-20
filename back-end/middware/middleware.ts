@@ -14,7 +14,7 @@ export const middlerware = async(req:Request, res: Response, next: NextFunction)
         res.cookie('jwt','',{httpOnly:true,maxAge:0});
         return res.status(402).json({message:'登录信息已过期！'});
     }
-    console.log('jwt is not valid')
+    console.log('jwt is valid')
     next();
 }catch(error){
     res.status(500).json({message:'network error'});

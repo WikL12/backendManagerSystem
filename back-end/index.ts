@@ -2,6 +2,7 @@ import express, { Request, Response } from 'express'
 import cors from 'cors'
 import useRouter from './router/userRoute'
 import systemRouter from './router/systemRoute'
+import todoRoute from './router/todoRoute'
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 const app = express();
@@ -17,6 +18,7 @@ app.use(cors({
 app.use('/assets', express.static('assets'));
 app.use('/user', useRouter)
 app.use('/system', systemRouter)
+app.use('/todo', todoRoute)
 app.listen(3000, () => {
     console.log('Server is running on port 3000');
 })

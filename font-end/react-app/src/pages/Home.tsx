@@ -1,33 +1,17 @@
-import { Link, Outlet } from "react-router"
+import { Link, Outlet, useLocation,useNavigate} from "react-router"
 import { LaptopOutlined, NotificationOutlined, UserOutlined } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
 import { Avatar, Breadcrumb, Layout, Menu, theme } from 'antd';
 import React, { useEffect } from "react";
 import HeaderControls from "./components/headerControls";
-import { useNavigate } from "react-router";
+import { router } from '../router'
 const { Header, Content, Footer, Sider } = Layout;
-const items2: MenuProps['items'] = [UserOutlined, LaptopOutlined, NotificationOutlined].map(
-  (icon, index) => {
-    const key = String(index + 1);
 
-    return {
-      key: `sub${key}`,
-      icon: React.createElement(icon),
-      label: `subnav ${key}`,
-      children: Array.from({ length: 4 }).map((_, j) => {
-        const subKey = index * 4 + j + 1;
-        return {
-          key: subKey,
-          label: `option${subKey}`,
-        };
-      }),
-    };
-  },
-);
 export default function Home() {
   const navigate = useNavigate();
-
   useEffect(() => {
+    console.log(router.routes);
+
     // 检查是否登录
     const token = localStorage.getItem('token');
     if (String(token) === 'null' || String(token) === 'undefined') {
@@ -35,6 +19,22 @@ export default function Home() {
       navigate('/login');
     }
   })
+  const items2 = router.routes[0].children.map(
+    (item, index) => {
+      const key = String(index + 1);
+      return {
+        key: item.path,
+        label: item.label,
+      };
+    },
+  );
+  
+  const nowPath = useLocation().pathname.split('/')[useLocation().pathname.split('/').length -1];
+  console.log(nowPath);
+  const goToPage = ({ item, key, keyPath, domEvent })=>{
+    navigate('/'+key);
+  }
+
   return (
     <div className="w-full flex justify-center items-center h-screen">
       <Layout className="h-screen">
@@ -65,10 +65,11 @@ export default function Home() {
             <Sider style={{ background: 'white' }} width={200}>
               <Menu
                 mode="inline"
-                defaultSelectedKeys={['1']}
+                defaultSelectedKeys={[nowPath]}
                 defaultOpenKeys={['sub1']}
                 style={{ height: '100%' }}
                 items={items2}
+                onClick={goToPage}
               />
             </Sider>
             <Content style={{ padding: '0 24px', minHeight: 280 }}>

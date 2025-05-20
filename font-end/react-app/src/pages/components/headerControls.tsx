@@ -11,7 +11,7 @@ export default function HeaderControls() {
     const hideModal = ()=>{
         setOpen(false)
     }
-    const {removeToken} = useSystemStore();
+    const {removeToken,removeUserNameStore,userName} = useSystemStore();
     const handleLogout = async()=>{
         try {
             const res = await logout();
@@ -19,6 +19,7 @@ export default function HeaderControls() {
                 console.log(res);
                 message.success('退出登录成功');
                 removeToken();
+                removeUserNameStore();
                 setOpen(false);
                 navigate('/login');
             }else{
@@ -46,7 +47,7 @@ export default function HeaderControls() {
         
         <Dropdown menu={{ items }}>
       <Space>
-        <div className="text-white">欢迎您，管理员</div>
+        <div className="text-white">欢迎您，{localStorage.getItem('userName')}</div>
         <DownOutlined className="text-white!"/>
       </Space>
   </Dropdown>

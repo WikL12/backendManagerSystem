@@ -9,7 +9,7 @@ export default function Login() {
    const [password, setPassword] = useState<string|number>('')
    const [username, setUsername] = useState<string>('')
    const navigate = useNavigate();
-   const {token, setToken} = useSystemStore()
+   const {token, setToken, setUserNameStore} = useSystemStore()
 
    const handleLogin = async () => {
        if (!username || !password) {
@@ -23,6 +23,7 @@ export default function Login() {
         //    localStorage.setItem('userInfo', JSON.stringify(res.data.userInfo))
         // 用zustand管理token
             setToken(res.data.token);
+            setUserNameStore(res.data.username)
             message.success('登录成功')
             navigate('/userlist')
        }else{

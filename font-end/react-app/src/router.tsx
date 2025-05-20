@@ -11,6 +11,7 @@ import {
 
   // 通过检查zustand里面的token是否为空来判断是否已经登录
 import useSystemStore from './store/system.store';
+import TodoList from './pages/secondPages/toDolist';
 const {token} = useSystemStore.getState();
 
 export const router = createBrowserRouter([
@@ -20,8 +21,16 @@ export const router = createBrowserRouter([
       errorElement: <ErrorPage></ErrorPage>,
       children: [
         {
+          label:'用户列表',
+          key:'1',
           path: "userList",
           element: <UserList></UserList>,
+        },
+        {
+          label:'待办事项',
+          key:'2',
+          path: "todolist",
+          element: <TodoList></TodoList>,
         }
       ]
     },
