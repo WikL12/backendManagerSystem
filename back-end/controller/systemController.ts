@@ -51,3 +51,14 @@ export const login = async(req:Request, res:Response) => {
         }
       
   }
+
+
+  export const sseControl = (req:Request, res:Response) => {
+    res.setHeader('Content-Type', 'text/event-stream');
+    res.setHeader('Cache-Control', 'no-cache');
+    res.setHeader('Connection', 'keep-alive');
+    res.flushHeaders();
+    setInterval(() => {
+      res.write(`data: ${new Date().toLocaleTimeString()}\n\n`);
+    },1000)
+  }
