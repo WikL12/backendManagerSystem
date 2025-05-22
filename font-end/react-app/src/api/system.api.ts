@@ -1,4 +1,4 @@
-import {requestFun,requestType} from './request';
+import {requestFun,requestType,requestFile,downLoadFn} from './request';
 export interface loginType{
     username:string,
     password:string|number,
@@ -59,4 +59,23 @@ interface editTodoInter{
 
 export const editTodoListApi = (params:editTodoInter):Promise<ResultType> => {
     return requestFun(baseUrl+'todo/editToDo','POST',{},params)
+}
+
+
+// 小型文件上传--直接上传
+export const littleFileUpload = (params:any,headers={}):Promise<ResultType> => {
+    return requestFile(baseUrl+'system/uploadLittleFile','POST',headers,params)
+}
+
+// 切片文件上传
+export const chunkFileUpload = (params:any,headers={}):Promise<ResultType> => {
+    return requestFile(baseUrl+'system/uploadChunkFile','POST',headers,params)
+}
+// 切片文件合并
+export const chunkFileControl = (params:any):Promise<ResultType> => {
+    return requestFun(baseUrl+'system/mergeFile','POST',{},params)
+}
+// 文件流下载
+export const fileDownload = (params:any):Promise<ResultType> => {
+    return downLoadFn(baseUrl+'system/downloadFile','POST',{},params)
 }

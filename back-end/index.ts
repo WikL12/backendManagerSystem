@@ -5,7 +5,9 @@ import systemRouter from './router/systemRoute'
 import todoRoute from './router/todoRoute'
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
+import expressWs from 'express-ws'
 const app = express();
+expressWs(app);
 // app.use(express.json({limit:'50mb'}));
 // app.use(express.urlencoded({limit:'50mb',extended:false}));
 app.use(bodyParser.json());

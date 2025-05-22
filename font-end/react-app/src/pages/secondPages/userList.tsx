@@ -3,6 +3,18 @@ import { Table, Space, Tag } from "antd";
 import type { ColumnsType } from 'antd/es/table';
 import { getUserList } from "../../api/system.api"
 
+const ws = new WebSocket('ws://localhost:3000/system/ws');
+
+ws.onopen = (event) => {
+    console.log('onopen',event);
+    ws.send('hello');
+}
+ws.onmessage = (event) => {
+    console.log(event.data);
+}
+
+
+
 interface UserData {
     userName: string;
     password: string;

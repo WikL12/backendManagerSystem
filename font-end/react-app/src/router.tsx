@@ -2,6 +2,8 @@ import Home from './pages/Home'
 import Login from './pages/Login'
 import Register from './pages/Register';
 import UserList from './pages/secondPages/userList';
+import ChatRoom from './pages/secondPages/chatRoom';
+import FileUpload from './pages/secondPages/fileUpload';
 import ErrorPage from './error-page'
 
 import {
@@ -31,7 +33,19 @@ export const router = createBrowserRouter([
           key:'2',
           path: "todolist",
           element: <TodoList></TodoList>,
-        }
+        },
+        {
+          label:'聊天室',
+          key:'3',
+          path: "chatRoom",
+          element: <ChatRoom></ChatRoom>,
+        },
+        {
+          label:'文件上传',
+          key:'3',
+          path: "fileUpload",
+          element: <FileUpload></FileUpload>,
+        },
       ]
     },
     {

@@ -1,6 +1,8 @@
 import { Request, Response } from "express";
 import db from "../Database";
 import {generateToken} from "./generateToken";
+import fs from "fs";
+import path from "path";
 export const login = async(req:Request, res:Response) => {
     console.log(req.body)
     const { username, password } = req.body;
@@ -60,5 +62,63 @@ export const login = async(req:Request, res:Response) => {
     res.flushHeaders();
     setInterval(() => {
       res.write(`data: ${new Date().toLocaleTimeString()}\n\n`);
-    },1000)
+    },10000)
+  }
+
+
+
+  // 小型文件上传
+  export const uploadLittleFile = (req:any, res:Response) => {
+    console.log(req.file)
+    res.json({ message: '上传成功', code:200 })
+  }
+  // 切片文件上传
+  export const uploadChunkFile = (req:any, res:Response) => {
+    console.log(req.file)
+    res.json({ message: '上传成功', code:200 })
+  }
+  // 切片文件合并
+  export const mergeFile = (req:any, res:Response) => {
+    const uploadPath = './uploads';
+    const pdfPath = './pdf';
+    
+    // Ensure directories exist
+    if (!fs.existsSync(path.join(process.cwd(), uploadPath))) {
+        fs.mkdirSync(path.join(process.cwd(), uploadPath), { recursive: true });
+    }
+    if (!fs.existsSync(path.join(process.cwd(), pdfPath))) {
+        fs.mkdirSync(path.join(process.cwd(), pdfPath), { recursive: true });
+    }
+
+    let files = fs.readdirSync(path.join(process.cwd(), uploadPath));
+    // Fix sorting by converting to numbers
+    files = files.sort((a,b) => {
+        const numA = parseInt(a.split('-')[0]);
+        const numB = parseInt(b.split('-')[0]);
+        return numA - numB;
+    });
+
+    const writePath = path.join(process.cwd(), pdfPath, `${req.body.fileName}`);
+    
+    // Create a new file or truncate if it exists
+    fs.writeFileSync(writePath, '');
+    
+    files.forEach((item) => {
+        const chunkPath = path.join(process.cwd(), uploadPath, item);
+        if (fs.existsSync(chunkPath)) {
+          console.log(fs.readFileSync(chunkPath))
+            fs.appendFileSync(writePath, fs.readFileSync(chunkPath));
+            fs.unlinkSync(chunkPath);
+        }
+    });
+    res.json({ message: '合并成功', code:200 });
+  }
+  // 文件下载
+  export const downloadFile = (req:any, res:Response) => {
+      const fileName = req.body.fileName;
+      const filePath = path.join(process.cwd(), `./assets`, `${fileName}`);
+      const content = fs.readFileSync(filePath);
+      res.setHeader('Content-Type', 'application/octet-stream');
+      res.setHeader('Content-Disposition', `attachment; filename=${fileName}`);
+      res.send(content);
   }
