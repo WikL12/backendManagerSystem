@@ -74,7 +74,7 @@ export default function FileUpload() {
         <div>
             文件上传
             <div style={{ marginLeft: '100px' }}>
-                <Upload onChange={fileChange} name="file">
+                <Upload onChange={fileChange} name="fileLittle">
                     <Button icon={<UploadOutlined />}>Click to Upload</Button>
                 </Upload>
                 {/* <input type="file" id="file" /> */}
@@ -82,7 +82,7 @@ export default function FileUpload() {
 
             大文件上传
             <div style={{ marginLeft: '100px' }}>
-                <Upload onChange={bigFileChange} name="file">
+                <Upload onChange={bigFileChange} {...{name:'fileBig'}}>
                     <Button icon={<UploadOutlined />}>Click to Upload</Button>
                 </Upload>
             </div>

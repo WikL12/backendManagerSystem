@@ -36,9 +36,9 @@ router.ws('/chatRoom', (ws, req) => {
     })
 })
 
-router.post('/uploadLittleFile',upload.single('file')  ,uploadLittleFile)
+router.post('/uploadLittleFile',upload.single('fileLittle')  ,uploadLittleFile)
 
-router.post('/uploadChunkFile',uploadChunk.single('file')  ,uploadChunkFile)
+router.post('/uploadChunkFile',uploadChunk.single('fileBig')  ,uploadChunkFile)
 // 将文件合并
 router.post('/mergeFile', mergeFile)
 // 文件流式下载
