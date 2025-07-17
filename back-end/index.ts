@@ -19,7 +19,7 @@ app.use(bodyParser.urlencoded({extended:false}));
 //     origin: 'http://localhost:5173',
 //     credentials: true,
 // }))
-const allowedOrigins = ['http://localhost:5173', 'http://localhost:3100','http://localhost:3000','http://39.104.28.37/'];
+const allowedOrigins = ['http://localhost:5173', 'http://localhost:3100','http://localhost:3000','http://39.104.28.37'];
 app.use(cors({
     origin: function (origin:any, callback) {
         if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
