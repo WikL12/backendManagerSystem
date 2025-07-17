@@ -1,0 +1,17 @@
+{
+  "name": "node-object",
+  "version": "1.0.0",
+  "description": "this is a node fullstack obkect",
+  "main": "./back-end/index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+     "build": "npm install --prefix back-end && npm install --prefix font-end/react-app  && npm run build --prefix font-end/react-app",
+    "start": "npm run start --prefix back-end "
+  },
+  "keywords": [
+    "nodejs",
+    "fullstack"
+  ],
+  "author": "wuzy",
+  "license": "ISC"
+}
