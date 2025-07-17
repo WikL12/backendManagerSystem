@@ -35,6 +35,7 @@ app.use('/system', systemRouter)
 app.use('/todo', todoRoute)
 
 if(process.env.NODE_ENV === 'production'){
+    console.log('now is production');
     app.use(express.static(path.join(__dirname,'../font-end/react-app','dist')));
     app.get('*',(req,res)=>{
         res.sendFile(path.join(__dirname,'../font-end/react-app','dist','index.html'));
