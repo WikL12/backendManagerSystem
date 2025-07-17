@@ -40,6 +40,7 @@ if(process.env.NODE_ENV === 'production'){
     app.use(express.static(path.join(__dirname,'../font-end/react-app','dist')));
     app.get(/(.*)/,(req,res)=>{
         res.sendFile(path.join(__dirname,'../font-end/react-app','dist','index.html'));
+        console.log(path.join(__dirname,'../font-end/react-app','dist','index.html'))
     });
 }
 app.listen(3000, () => {
