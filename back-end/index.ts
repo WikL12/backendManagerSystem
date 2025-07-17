@@ -30,7 +30,7 @@ app.use(cors({
       },
     credentials: true,
 }))
-app.use('/assets', express.static('assets'));
+// app.use('/assets', express.static('assets'));
 app.use('/user', useRouter)
 app.use('/system', systemRouter)
 app.use('/todo', todoRoute)
