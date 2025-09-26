@@ -4,6 +4,7 @@ import Register from './pages/Register';
 import UserList from './pages/secondPages/userList';
 import ChatRoom from './pages/secondPages/chatRoom';
 import FileUpload from './pages/secondPages/fileUpload';
+import MoneyRecord from './pages/secondPages/moneyRecord';
 import ErrorPage from './error-page'
 
 import {
@@ -45,6 +46,12 @@ export const router = createBrowserRouter([
           key:'3',
           path: "fileUpload",
           element: <FileUpload></FileUpload>,
+        },
+        {
+          label:'记账本',
+          key:'4',
+          path: "moneyRecord",
+          element: <MoneyRecord></MoneyRecord>,
         },
       ]
     },

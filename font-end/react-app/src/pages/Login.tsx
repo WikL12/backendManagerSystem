@@ -5,8 +5,8 @@ import {useNavigate} from "react-router";
 // 用zustand管理token
 import useSystemStore from "../store/system.store";
 
-console.log(window.$wujie.props.msg);
-alert(window.$wujie.props.msg)
+// console.log(window.$wujie.props.msg);
+// alert(window.$wujie.props.msg)
 console.log(1)
 export default function Login() {
    const [password, setPassword] = useState<string|number>('')
